@@ -10,9 +10,9 @@ RUN apk add --no-cache --virtual .build-deps wget gnupg tar ca-certificates && \
     gpg --batch --verify influxdb-${INFLUXDB_VERSION}_linux_armhf.tar.gz.asc influxdb-${INFLUXDB_VERSION}_linux_armhf.tar.gz && \
     mkdir -p /usr/src && \
     tar -C /usr/src -xzf influxdb-${INFLUXDB_VERSION}_linux_armhf.tar.gz && \
-    rm -f /usr/src/influxdb-*/influxdb.conf && \
-    chmod +x /usr/src/influxdb-*/* && \
-    cp -a /usr/src/influxdb-*/* /usr/bin/ && \
+    rm -f /usr/src/influxdb-*/etc/influxdb/influxdb.conf && \
+    chmod +x /usr/src/influxdb-*/usr/bin/* && \
+    cp -a /usr/src/influxdb-*/* / && \
     rm -rf *.tar.gz* /usr/src /root/.gnupg && \
     apk del .build-deps
 COPY influxdb.conf /etc/influxdb/influxdb.conf
